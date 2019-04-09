@@ -38,8 +38,6 @@ import {MDCSelectIcon, MDCSelectIconFactory} from './icon/index';
 import {MDCSelectEventDetail, MDCSelectFoundationMap} from './types';
 
 type PointerEventType = 'mousedown' | 'touchstart';
-
-const POINTER_EVENTS: PointerEventType[] = ['mousedown', 'touchstart'];
 const VALIDATION_ATTR_WHITELIST = ['required', 'aria-required'];
 
 export class MDCSelect extends MDCComponent<MDCSelectFoundation> implements MDCRippleCapableSurface {
@@ -179,7 +177,7 @@ export class MDCSelect extends MDCComponent<MDCSelectFoundation> implements MDCR
     this.targetElement_.addEventListener('focus', this.handleFocus_);
     this.targetElement_.addEventListener('blur', this.handleBlur_);
 
-    POINTER_EVENTS.forEach((evtType) => {
+    ['click'].forEach((evtType) => {
       this.targetElement_.addEventListener(evtType, this.handleClick_ as EventListener);
     });
 
@@ -215,7 +213,7 @@ export class MDCSelect extends MDCComponent<MDCSelectFoundation> implements MDCR
     this.targetElement_.removeEventListener('focus', this.handleFocus_);
     this.targetElement_.removeEventListener('blur', this.handleBlur_);
     this.targetElement_.removeEventListener('keydown', this.handleKeydown_);
-    POINTER_EVENTS.forEach((evtType) => {
+    ['click'].forEach((evtType) => {
       this.targetElement_.removeEventListener(evtType, this.handleClick_ as EventListener);
     });
 
